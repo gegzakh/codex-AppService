@@ -1,3 +1,5 @@
+using Scalar.AspNetCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,6 +13,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference(options => 
+    {
+        options.WithTitle("My API");
+        options.WithTheme(ScalarTheme.Moon);
+        options.WithSidebar(true);
+    });
 }
 
 app.UseHttpsRedirection();
